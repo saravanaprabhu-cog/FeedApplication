@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dummy_title">Feed Title</string>
+    <string name="dummy_long_text">This is the description of the feed and it can be long in length</string>
+</resources>
