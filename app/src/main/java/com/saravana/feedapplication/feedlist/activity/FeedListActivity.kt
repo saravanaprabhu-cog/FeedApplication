@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.saravana.feedapplication.R
 import com.saravana.feedapplication.databinding.ActivityFeedListBinding
 import com.saravana.feedapplication.feedlist.adapter.FeedListAdapter
-import com.saravana.feedapplication.feedlist.callback.FeedClickListener
+import com.saravana.feedapplication.feedlist.listener.FeedClickListener
 import com.saravana.feedapplication.feedlist.model.Feed
 import com.saravana.feedapplication.feedlist.viewmodel.FeedListViewModel
 import kotlinx.android.synthetic.main.activity_feed_list.*
@@ -22,27 +22,27 @@ class FeedListActivity : AppCompatActivity(), FeedClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feed_list)
 
-        val activityBinding: ActivityFeedListBinding =
+        val activityFeedListBinding: ActivityFeedListBinding =
             DataBindingUtil.setContentView(
                 this,
                 R.layout.activity_feed_list
             )
 
-        val viewModel = ViewModelProviders.of(this)[FeedListViewModel::class.java]
-        activityBinding.viewmodel = viewModel
+        val feedListViewModel = ViewModelProviders.of(this)[FeedListViewModel::class.java]
+        activityFeedListBinding.viewmodel = feedListViewModel
 
-        viewModel.isLoadingDataFromServer().observe(this, Observer {
+        feedListViewModel.isLoadingDataFromServer().observe(this, Observer {
             feedListSwipeRefreshLayout.isRefreshing = it
         })
 
-        viewModel.getFeedDataViewModel().observe(this, Observer {
-            it.feedTitle?.let { it1 -> setScreenTitle(it1) }
-            it.feedList?.let { it1 -> setFeedList(it1) }
+        feedListViewModel.getFeedDataViewModel().observe(this, Observer {
+            it.feedTitle?.let { title -> setScreenTitle(title) }
+            it.feedList?.let { list -> setFeedList(list) }
         })
-        activityBinding.feedadapter = feedAdapter
+        activityFeedListBinding.feedadapter = feedAdapter
 
         if (savedInstanceState == null) {
-            viewModel.init()
+            feedListViewModel.init()
         }
     }
 

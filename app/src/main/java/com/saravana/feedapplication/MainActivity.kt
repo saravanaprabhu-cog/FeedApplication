@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
-import com.saravana.feedapplication.feedlist.activity.FeedDetailActivity
 import com.saravana.feedapplication.feedlist.activity.FeedListActivity
 
 class MainActivity : AppCompatActivity() {

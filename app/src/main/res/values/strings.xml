@@ -1,6 +1,8 @@
 <resources>
-    <string name="app_name">FeedApplication</string>
+    <string name="app_name">Feed</string>
     <string name="default_feed_title">Feed Title</string>
     <string name="feed_image">Feed Image</string>
     <string name="feed_navigate_image">Feed Item Navigate Next Image</string>
+    <string name="feed_description_unavailable">Feed description unavailable</string>
+    <string name="feed_title_unavailable">Feed title unavailable</string>
 </resources>

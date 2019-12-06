@@ -11,7 +11,7 @@
 
         <variable
             name="feedclicklistener"
-            type="com.saravana.feedapplication.feedlist.callback.FeedClickListener" />
+            type="com.saravana.feedapplication.feedlist.listener.FeedClickListener" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -59,19 +59,20 @@
                 android:id="@+id/feedItemTitleTextView"
                 style="@style/FeedItemTitle"
                 android:layout_width="@dimen/match_constraint"
+                android:textDirection="locale"
                 android:layout_height="wrap_content"
-                android:text="@{feed.title}"
+                android:text="@{feed.title ?? @string/feed_title_unavailable}"
                 app:layout_constraintEnd_toStartOf="@+id/navigateNextImageView"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="@string/dummy_title" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/feedItemDescriptionTextView"
                 style="@style/FeedItemDescription"
                 android:layout_width="@dimen/match_constraint"
                 android:layout_height="wrap_content"
-                android:text="@{feed.description}"
+                android:text="@{feed.description ?? @string/feed_description_unavailable}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/feedThumbnailImageView"
                 app:layout_constraintStart_toStartOf="parent"
