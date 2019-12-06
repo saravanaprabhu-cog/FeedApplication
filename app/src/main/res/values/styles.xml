@@ -26,7 +26,7 @@
 
     <style name="FeedDescription">
         <item name="android:textSize">20sp</item>
-        <item name="android:layout_marginTop">@dimen/margin_small</item>
+        <item name="android:layout_marginTop">@dimen/margin_medium</item>
         <item name="android:layout_marginEnd">@dimen/margin_medium</item>
         <item name="android:layout_marginRight">@dimen/margin_medium</item>
         <item name="android:layout_marginLeft">@dimen/margin_medium</item>
