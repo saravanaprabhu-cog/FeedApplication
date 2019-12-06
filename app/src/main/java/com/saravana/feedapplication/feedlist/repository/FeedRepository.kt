@@ -5,7 +5,7 @@ import com.saravana.feedapplication.common.webservice.RetrofitRequest
 import com.saravana.feedapplication.feedlist.constant.BASE_URL
 import com.saravana.feedapplication.feedlist.constant.FEED_PATH
 import com.saravana.feedapplication.feedlist.model.FeedResponse
-import com.saravana.feedapplication.feedlist.webservice.FeedService
+import com.saravana.feedapplication.feedlist.api.FeedService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

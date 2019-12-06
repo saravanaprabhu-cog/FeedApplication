@@ -1,4 +1,4 @@
-package com.saravana.feedapplication.feedlist.callback
+package com.saravana.feedapplication.feedlist.listener
 
 import com.saravana.feedapplication.feedlist.model.Feed
 

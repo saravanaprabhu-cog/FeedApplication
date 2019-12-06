@@ -1,4 +1,4 @@
-package com.saravana.feedapplication.feedlist.webservice
+package com.saravana.feedapplication.feedlist.api
 
 import com.saravana.feedapplication.feedlist.model.FeedResponse
 import retrofit2.Call
