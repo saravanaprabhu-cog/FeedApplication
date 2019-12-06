@@ -8,6 +8,10 @@
         <variable
             name="feed"
             type="com.saravana.feedapplication.feedlist.model.Feed" />
+
+        <variable
+            name="feedclicklistener"
+            type="com.saravana.feedapplication.feedlist.callback.FeedClickListener" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -18,7 +22,9 @@
         android:layout_marginLeft="@dimen/margin_medium"
         android:layout_marginTop="@dimen/margin_medium"
         android:layout_marginEnd="@dimen/margin_medium"
-        android:layout_marginRight="@dimen/margin_medium">
+        android:layout_marginRight="@dimen/margin_medium"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:onClick="@{() -> feedclicklistener.onFeedClicked(feed)}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/containerLayout"
