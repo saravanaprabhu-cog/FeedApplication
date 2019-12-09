@@ -4,8 +4,6 @@
     <dimen name="match_constraint">0dp</dimen>
     <dimen name="margin_small">8dp</dimen>
     <dimen name="margin_medium">16dp</dimen>
-    <dimen name="default_horizontal_margin">@dimen/margin_medium</dimen>
-    <dimen name="default_vertical_margin">@dimen/margin_medium</dimen>
 
     <!-- feed item -->
     <dimen name="feed_item_thumbnail_width">100dp</dimen>

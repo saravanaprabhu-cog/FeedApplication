@@ -1,4 +1,4 @@
-package com.saravana.feedapplication.feedlist.adapter.viewholder
+package com.saravana.feedapplication.feedlist.adapter
 
 import androidx.recyclerview.widget.RecyclerView
 import com.saravana.feedapplication.databinding.ItemFeedBinding

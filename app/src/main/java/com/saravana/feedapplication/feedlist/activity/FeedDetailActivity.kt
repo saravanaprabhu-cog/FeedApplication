@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.saravana.feedapplication.R
 import com.saravana.feedapplication.databinding.ActivityFeedDetailBinding
+import com.saravana.feedapplication.feedlist.constant.BundleConstant
 import com.saravana.feedapplication.feedlist.model.Feed
 
 class FeedDetailActivity : AppCompatActivity() {
@@ -18,7 +19,7 @@ class FeedDetailActivity : AppCompatActivity() {
             R.layout.activity_feed_detail
         )
 
-        val feed: Feed = intent.getParcelableExtra("feed")
+        val feed: Feed = intent.getParcelableExtra(BundleConstant.KEY_FEED)
         feed.title?.let { setScreenTitle(it) } ?: run {
             setScreenTitle(getString(R.string.feed_title_unavailable))
         }
