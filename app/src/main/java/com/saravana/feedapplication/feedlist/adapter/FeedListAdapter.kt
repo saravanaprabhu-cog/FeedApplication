@@ -6,7 +6,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.saravana.feedapplication.R
 import com.saravana.feedapplication.databinding.ItemFeedBinding
-import com.saravana.feedapplication.feedlist.adapter.viewholder.FeedItemViewHolder
 import com.saravana.feedapplication.feedlist.listener.FeedClickListener
 import com.saravana.feedapplication.feedlist.model.Feed
 
@@ -22,7 +21,10 @@ class FeedListAdapter(private val feedClickListener: FeedClickListener) :
             parent,
             false
         )
-        return FeedItemViewHolder(feedItemBinding, feedClickListener)
+        return FeedItemViewHolder(
+            feedItemBinding,
+            feedClickListener
+        )
     }
 
     override fun getItemCount() = mItems.size

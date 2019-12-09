@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.saravana.feedapplication.R
 import com.saravana.feedapplication.databinding.ActivityFeedListBinding
 import com.saravana.feedapplication.feedlist.adapter.FeedListAdapter
+import com.saravana.feedapplication.feedlist.constant.BundleConstant
 import com.saravana.feedapplication.feedlist.listener.FeedClickListener
 import com.saravana.feedapplication.feedlist.model.Feed
 import com.saravana.feedapplication.feedlist.viewmodel.FeedListViewModel
@@ -56,7 +57,7 @@ class FeedListActivity : AppCompatActivity(), FeedClickListener {
 
     override fun onFeedClicked(feed: Feed) {
         val feedDetailIntent = Intent(this@FeedListActivity, FeedDetailActivity::class.java)
-        feedDetailIntent.putExtra("feed", feed)
+        feedDetailIntent.putExtra(BundleConstant.KEY_FEED, feed)
         startActivity(feedDetailIntent)
     }
 }
