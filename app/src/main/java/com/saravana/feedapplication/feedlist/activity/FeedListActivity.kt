@@ -37,7 +37,9 @@ class FeedListActivity : AppCompatActivity(), FeedClickListener {
         })
 
         feedListViewModel.getFeedDataViewModel().observe(this, Observer {
-            it.feedTitle?.let { title -> setScreenTitle(title) }
+            if (it.isValidFeedTitle()) {
+                it.feedTitle?.let { title -> setScreenTitle(title) }
+            }
             it.feedList?.let { list -> setFeedList(list) }
         })
         activityFeedListBinding.feedadapter = feedAdapter

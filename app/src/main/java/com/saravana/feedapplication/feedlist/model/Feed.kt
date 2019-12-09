@@ -9,4 +9,18 @@ data class Feed(
     @SerializedName("title") val title: String?,
     @SerializedName("description") val description: String?,
     @SerializedName("imageHref") val imageUrl: String?
-):Parcelable
+) : Parcelable {
+    fun isValidTitle(): Boolean {
+        title?.let {
+            return !(it == "null" || it == "")
+        }
+        return false
+    }
+
+    fun isValidDescription(): Boolean {
+        description?.let {
+            return !(it == "null" || it == "")
+        }
+        return false
+    }
+}

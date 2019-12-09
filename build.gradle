@@ -23,6 +23,8 @@ buildscript {
         lifecycleVersion = '2.1.0'
         retrofitVersion = '2.6.2'
         glideVersion = '4.10.0'
+        testRunnerVersion = '1.1.0'
+        testRuleVersion = '1.1.0'
     }
     repositories {
         google()
