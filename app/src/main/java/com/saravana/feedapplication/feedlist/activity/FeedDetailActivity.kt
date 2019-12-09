@@ -20,7 +20,9 @@ class FeedDetailActivity : AppCompatActivity() {
         )
 
         val feed: Feed = intent.getParcelableExtra(BundleConstant.KEY_FEED)
-        feed.title?.let { setScreenTitle(it) } ?: run {
+        if (feed.isValidTitle()) {
+            feed.title?.let { setScreenTitle(it) }
+        } else {
             setScreenTitle(getString(R.string.feed_title_unavailable))
         }
         activityBinding.feed = feed
