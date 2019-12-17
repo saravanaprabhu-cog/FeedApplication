@@ -9,7 +9,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-object FeedRepository {
+class FeedRepository {
     private val feedResponseLiveData = MutableLiveData<FeedResponse>()
     private val isLoadingData = MutableLiveData<Boolean>()
 

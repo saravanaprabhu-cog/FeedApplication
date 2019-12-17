@@ -3,17 +3,18 @@ package com.saravana.feedapplication.feedlist.viewmodel
 import androidx.lifecycle.ViewModel
 import com.saravana.feedapplication.feedlist.repository.FeedRepository
 
-class FeedListViewModel : ViewModel() {
+class FeedListViewModel(private val feedRepository: FeedRepository) : ViewModel() {
 
-    fun getFeedDataViewModel() = FeedRepository.getFeedResponseLiveData()
+    fun getFeedDataViewModel() = feedRepository.getFeedResponseLiveData()
 
-    fun isLoadingDataFromServer() = FeedRepository.isLoadingData()
+    fun isLoadingDataFromServer() = feedRepository.isLoadingData()
 
     fun init() {
-        FeedRepository.fetchFeedData()
+        feedRepository.fetchFeedData()
     }
 
     fun onRefresh() {
-        FeedRepository.fetchFeedData()
+        feedRepository.fetchFeedData()
     }
+
 }

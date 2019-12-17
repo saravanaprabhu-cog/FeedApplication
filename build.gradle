@@ -25,6 +25,8 @@ buildscript {
         glideVersion = '4.10.0'
         testRunnerVersion = '1.1.0'
         testRuleVersion = '1.1.0'
+        coreTestingVersion = '2.0.0'
+
     }
     repositories {
         google()
