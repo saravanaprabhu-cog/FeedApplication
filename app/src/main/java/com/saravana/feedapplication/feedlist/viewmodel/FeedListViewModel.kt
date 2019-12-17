@@ -1,20 +1,44 @@
 package com.saravana.feedapplication.feedlist.viewmodel
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.saravana.feedapplication.feedlist.listener.FeedResponseListener
+import com.saravana.feedapplication.feedlist.model.FeedResponse
 import com.saravana.feedapplication.feedlist.repository.FeedRepository
 
 class FeedListViewModel(private val feedRepository: FeedRepository) : ViewModel() {
 
-    fun getFeedDataViewModel() = feedRepository.getFeedResponseLiveData()
+    private val feedResponseLiveData = MutableLiveData<FeedResponse>()
+    private val isLoadingData = MutableLiveData<Boolean>()
 
-    fun isLoadingDataFromServer() = feedRepository.isLoadingData()
+    init {
+        isLoadingData.value = false
+    }
+
+    fun getFeedDataViewModel(): LiveData<FeedResponse> {
+        return feedResponseLiveData
+    }
+
+    fun isLoadingDataFromServer(): LiveData<Boolean> {
+        return isLoadingData
+    }
 
     fun init() {
-        feedRepository.fetchFeedData()
+        fetchFeedData()
     }
 
     fun onRefresh() {
-        feedRepository.fetchFeedData()
+        fetchFeedData()
     }
 
+    private fun fetchFeedData() {
+        isLoadingData.value = true
+        feedRepository.fetchFeedData(object : FeedResponseListener {
+            override fun onFeedResponse(feedResponse: FeedResponse) {
+                isLoadingData.value = false
+                feedResponseLiveData.value = feedResponse
+            }
+        })
+    }
 }

@@ -20,35 +20,59 @@ import kotlinx.android.synthetic.main.activity_feed_list.*
 class FeedListActivity : AppCompatActivity(), FeedClickListener {
 
     private val feedAdapter = FeedListAdapter(this)
+    private val feedRepository = FeedRepository()
+    private lateinit var activityFeedListBinding: ActivityFeedListBinding
+    private lateinit var feedListViewModel: FeedListViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feed_list)
+        createDataBinder()
+        createViewModel()
+        setObservers()
+        setupDataBinding()
 
-        val activityFeedListBinding: ActivityFeedListBinding =
-            DataBindingUtil.setContentView(
-                this,
-                R.layout.activity_feed_list
-            )
+        if (savedInstanceState == null) {
+            initViewModel()
+        }
+    }
 
-        val feedListViewModel = ViewModelProviders.of(this, FeedListViewModelFactory(FeedRepository()))[FeedListViewModel::class.java]
-        activityFeedListBinding.viewmodel = feedListViewModel
+    private fun createDataBinder() {
+        activityFeedListBinding = DataBindingUtil.setContentView(
+            this,
+            R.layout.activity_feed_list
+        )
+    }
 
+    private fun createViewModel() {
+        feedListViewModel = ViewModelProviders.of(
+            this,
+            FeedListViewModelFactory(feedRepository)
+        )[FeedListViewModel::class.java]
+    }
+
+    private fun setObservers() {
         feedListViewModel.isLoadingDataFromServer().observe(this, Observer {
             feedListSwipeRefreshLayout.isRefreshing = it
         })
 
         feedListViewModel.getFeedDataViewModel().observe(this, Observer {
-            if (it.isValidFeedTitle()) {
+            if (!it.feedTitle.isNullOrEmpty()) {
                 it.feedTitle?.let { title -> setScreenTitle(title) }
+            } else {
+                setScreenTitle(getString(R.string.feed_title_unavailable))
             }
             it.feedList?.let { list -> setFeedList(list) }
         })
-        activityFeedListBinding.feedadapter = feedAdapter
+    }
 
-        if (savedInstanceState == null) {
-            feedListViewModel.init()
-        }
+    private fun setupDataBinding() {
+        activityFeedListBinding.viewmodel = feedListViewModel
+        activityFeedListBinding.feedadapter = feedAdapter
+    }
+
+    private fun initViewModel() {
+        feedListViewModel.init()
     }
 
     private fun setScreenTitle(title: String) {
