@@ -12,15 +12,11 @@ class FeedListViewModel(private val feedRepository: FeedRepository) : ViewModel(
     private val feedResponseLiveData = MutableLiveData<FeedResponse>()
     private val isLoadingData = MutableLiveData<Boolean>()
 
-    init {
-        isLoadingData.value = false
-    }
-
-    fun getFeedDataViewModel(): LiveData<FeedResponse> {
+    fun getFeedResponseObservable(): LiveData<FeedResponse> {
         return feedResponseLiveData
     }
 
-    fun isLoadingDataFromServer(): LiveData<Boolean> {
+    fun isLoadingDataObservable(): LiveData<Boolean> {
         return isLoadingData
     }
 

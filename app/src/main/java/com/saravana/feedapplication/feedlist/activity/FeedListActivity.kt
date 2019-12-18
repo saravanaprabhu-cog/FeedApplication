@@ -52,11 +52,11 @@ class FeedListActivity : AppCompatActivity(), FeedClickListener {
     }
 
     private fun setObservers() {
-        feedListViewModel.isLoadingDataFromServer().observe(this, Observer {
+        feedListViewModel.isLoadingDataObservable().observe(this, Observer {
             feedListSwipeRefreshLayout.isRefreshing = it
         })
 
-        feedListViewModel.getFeedDataViewModel().observe(this, Observer {
+        feedListViewModel.getFeedResponseObservable().observe(this, Observer {
             if (!it.feedTitle.isNullOrEmpty()) {
                 it.feedTitle?.let { title -> setScreenTitle(title) }
             } else {

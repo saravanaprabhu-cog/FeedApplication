@@ -16,8 +16,7 @@ class FeedRepository {
 
 
     fun fetchFeedData(feedResponseListener: FeedResponseListener) {
-        println()
-        //fetchFeedDataFromServer(feedResponseListener)
+        fetchFeedDataFromServer(feedResponseListener)
     }
 
     private fun fetchFeedDataFromServer(feedResponseListener: FeedResponseListener) {
