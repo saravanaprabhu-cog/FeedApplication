@@ -10,10 +10,10 @@ class FeedListViewModel(private val feedRepository: FeedRepository) : ViewModel(
     fun isLoadingDataObservable() = feedRepository.isLoadingDataObservable()
 
     fun init() {
-        feedRepository.fetchFeedDataFromServer3(feedRepository.MyCallback())
+        feedRepository.fetchFeedDataFromServer(feedRepository.FeedResponseHandler())
     }
 
     fun onRefresh() {
-        feedRepository.fetchFeedDataFromServer3(feedRepository.MyCallback())
+        feedRepository.fetchFeedDataFromServer(feedRepository.FeedResponseHandler())
     }
 }

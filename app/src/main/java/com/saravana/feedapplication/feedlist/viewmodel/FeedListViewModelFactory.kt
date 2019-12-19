@@ -11,5 +11,4 @@ class FeedListViewModelFactory(private val feedRepository: FeedRepository) : Vie
         //return modelClass.getConstructor(FeedRepository::class.java).newInstance(feedRepository)
         return FeedListViewModel(feedRepository) as T
     }
-
 }

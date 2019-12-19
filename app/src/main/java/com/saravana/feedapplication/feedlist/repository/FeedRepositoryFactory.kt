@@ -8,8 +8,6 @@ object FeedRepositoryFactory {
 
     fun provideFeedRepository(): FeedRepository {
         val retrofitService = RetrofitRequest.getRetrofitFor(URLConstant.BASE_URL).create(FeedService::class.java)
-        val call = retrofitService.getFeedData(URLConstant.FEED_PATH)
-        return FeedRepository(retrofitService, call)
+        return FeedRepository(retrofitService)
     }
-
 }

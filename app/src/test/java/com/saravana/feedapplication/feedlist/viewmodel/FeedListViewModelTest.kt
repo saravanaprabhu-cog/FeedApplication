@@ -24,7 +24,7 @@ class FeedListViewModelTest {
     var instantExecutorRule = InstantTaskExecutorRule()
 
     @Mock
-    lateinit var mockFeedRepository: FeedRepository
+    private lateinit var mockFeedRepository: FeedRepository
 
     private val fakeFeedResponse = FeedResponse("Title", arrayListOf())
 
@@ -33,6 +33,7 @@ class FeedListViewModelTest {
     @Before
     fun setup() {
         MockitoAnnotations.initMocks(this)
+
         feedListViewModel = FeedListViewModel(mockFeedRepository)
     }
 
