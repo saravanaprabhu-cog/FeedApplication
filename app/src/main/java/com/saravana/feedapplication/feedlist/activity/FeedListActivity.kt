@@ -12,7 +12,7 @@ import com.saravana.feedapplication.feedlist.adapter.FeedListAdapter
 import com.saravana.feedapplication.feedlist.constant.BundleConstant
 import com.saravana.feedapplication.feedlist.listener.FeedClickListener
 import com.saravana.feedapplication.feedlist.model.Feed
-import com.saravana.feedapplication.feedlist.repository.FeedRepository
+import com.saravana.feedapplication.feedlist.repository.FeedRepositoryFactory
 import com.saravana.feedapplication.feedlist.viewmodel.FeedListViewModel
 import com.saravana.feedapplication.feedlist.viewmodel.FeedListViewModelFactory
 import kotlinx.android.synthetic.main.activity_feed_list.*
@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.activity_feed_list.*
 class FeedListActivity : AppCompatActivity(), FeedClickListener {
 
     private val feedAdapter = FeedListAdapter(this)
-    private val feedRepository = FeedRepository()
+    private val feedRepository = FeedRepositoryFactory.provideFeedRepository()
     private lateinit var activityFeedListBinding: ActivityFeedListBinding
     private lateinit var feedListViewModel: FeedListViewModel
 
@@ -57,12 +57,17 @@ class FeedListActivity : AppCompatActivity(), FeedClickListener {
         })
 
         feedListViewModel.getFeedResponseObservable().observe(this, Observer {
-            if (!it.feedTitle.isNullOrEmpty()) {
-                it.feedTitle?.let { title -> setScreenTitle(title) }
-            } else {
+            if (it == null) {
                 setScreenTitle(getString(R.string.feed_title_unavailable))
+                setFeedList(arrayListOf())
+            } else {
+                if (!it.feedTitle.isNullOrEmpty()) {
+                    it.feedTitle?.let { title -> setScreenTitle(title) }
+                } else {
+                    setScreenTitle(getString(R.string.feed_title_unavailable))
+                }
+                it.feedList?.let { list -> setFeedList(list) }
             }
-            it.feedList?.let { list -> setFeedList(list) }
         })
     }
 

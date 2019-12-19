@@ -47,8 +47,11 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:$rootProject.recyclerViewVersion"
     implementation "androidx.cardview:cardview:$rootProject.cardViewVersion"
     implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata:${lifecycleVersion}"
+    implementation "androidx.lifecycle:lifecycle-livedata-core:${lifecycleVersion}"
     implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofitVersion"
     implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
 
     // Testing dependencies
@@ -60,9 +63,10 @@ dependencies {
     androidTestImplementation "androidx.test:runner:$rootProject.testRunnerVersion"
     androidTestImplementation "androidx.test:rules:$rootProject.testRuleVersion"
     testImplementation 'org.mockito:mockito-inline:2.13.0'
-    testImplementation "org.mockito:mockito-core:2.19.0"
+    testImplementation "org.mockito:mockito-core:2.23.0"
     testImplementation "android.arch.core:core-testing:1.1.1"
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
-    implementation "androidx.lifecycle:lifecycle-livedata:${lifecycleVersion}"
-    implementation "androidx.lifecycle:lifecycle-livedata-core:${lifecycleVersion}"
+
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
 }
