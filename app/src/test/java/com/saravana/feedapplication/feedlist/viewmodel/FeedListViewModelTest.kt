@@ -2,7 +2,6 @@ package com.saravana.feedapplication.feedlist.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
-import com.nhaarman.mockitokotlin2.verify
 import com.saravana.feedapplication.feedlist.model.FeedResponse
 import com.saravana.feedapplication.feedlist.repository.FeedRepository
 import com.saravana.feedapplication.feedlist.util.getOrAwaitValue
@@ -13,6 +12,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito
+import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
 
