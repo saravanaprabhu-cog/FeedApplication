@@ -61,12 +61,17 @@ class FeedListActivity : AppCompatActivity(), FeedClickListener {
                 setScreenTitle(getString(R.string.feed_title_unavailable))
                 setFeedList(arrayListOf())
             } else {
-                if (!it.feedTitle.isNullOrEmpty()) {
-                    it.feedTitle?.let { title -> setScreenTitle(title) }
-                } else {
+                if (it.feedTitle.isNullOrEmpty()) {
                     setScreenTitle(getString(R.string.feed_title_unavailable))
+                } else {
+                    setScreenTitle(it.feedTitle)
                 }
-                it.feedList?.let { list -> setFeedList(list) }
+
+                if (it.feedList.isNullOrEmpty()) {
+                    setFeedList(arrayListOf())
+                } else {
+                    setFeedList(it.feedList)
+                }
             }
         })
     }
