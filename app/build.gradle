@@ -26,6 +26,15 @@ android {
         }
     }
     dataBinding.enabled true
+
+    androidExtensions {
+        experimental = true
+    }
+
+    testOptions {
+        unitTests.includeAndroidResources = true
+        unitTests.returnDefaultValues = true
+    }
 }
 
 dependencies {
@@ -38,6 +47,8 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:$rootProject.recyclerViewVersion"
     implementation "androidx.cardview:cardview:$rootProject.cardViewVersion"
     implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata:${lifecycleVersion}"
+    implementation "androidx.lifecycle:lifecycle-livedata-core:${lifecycleVersion}"
     implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
     implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
@@ -50,4 +61,7 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$rootProject.espressoVersion"
     androidTestImplementation "androidx.test:runner:$rootProject.testRunnerVersion"
     androidTestImplementation "androidx.test:rules:$rootProject.testRuleVersion"
+    testImplementation "org.mockito:mockito-inline:$rootProject.mokitoInlineVersion"
+    testImplementation "org.mockito:mockito-core:$rootProject.mokitoCoreVersion"
+    testImplementation "android.arch.core:core-testing:$rootProject.coreTestingVersion"
 }
