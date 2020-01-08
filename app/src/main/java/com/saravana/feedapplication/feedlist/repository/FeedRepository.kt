@@ -14,11 +14,6 @@ class FeedRepository(private val feedService: FeedService) {
     private val feedResponseObservable = MutableLiveData<FeedResponse>()
     private val isLoadingDataObservable = MutableLiveData<Boolean>()
 
-    init {
-        feedResponseObservable.value = FeedResponse("", ArrayList())
-        isLoadingDataObservable.value = false
-    }
-
     fun getFeedResponseObservable(): LiveData<FeedResponse> {
         return feedResponseObservable
     }

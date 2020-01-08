@@ -8,7 +8,6 @@ class FeedListViewModelFactory(private val feedRepository: FeedRepository) : Vie
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        //return modelClass.getConstructor(FeedRepository::class.java).newInstance(feedRepository)
         return FeedListViewModel(feedRepository) as T
     }
 }
