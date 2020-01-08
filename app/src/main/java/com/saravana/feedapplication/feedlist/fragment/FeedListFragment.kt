@@ -1,32 +1,33 @@
-package com.saravana.feedapplication.feedlist.activity
+package com.saravana.feedapplication.feedlist.fragment
 
-import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 import com.saravana.feedapplication.R
-import com.saravana.feedapplication.databinding.ActivityFeedListBinding
+import com.saravana.feedapplication.databinding.FragmentFeedListBinding
 import com.saravana.feedapplication.feedlist.adapter.FeedListAdapter
-import com.saravana.feedapplication.feedlist.constant.BundleConstant
 import com.saravana.feedapplication.feedlist.listener.FeedClickListener
 import com.saravana.feedapplication.feedlist.model.Feed
 import com.saravana.feedapplication.feedlist.repository.FeedRepositoryFactory
 import com.saravana.feedapplication.feedlist.viewmodel.FeedListViewModel
 import com.saravana.feedapplication.feedlist.viewmodel.FeedListViewModelFactory
-import kotlinx.android.synthetic.main.activity_feed_list.*
+import kotlinx.android.synthetic.main.fragment_feed_list.*
 
-class FeedListActivity : AppCompatActivity(), FeedClickListener {
+class FeedListFragment : Fragment(), FeedClickListener {
 
     private val feedAdapter = FeedListAdapter(this)
     private val feedRepository = FeedRepositoryFactory.provideFeedRepository()
-    private lateinit var activityFeedListBinding: ActivityFeedListBinding
+    private lateinit var fragmentFeedListBinding: FragmentFeedListBinding
     private lateinit var feedListViewModel: FeedListViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_feed_list)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         createDataBinder()
         createViewModel()
         setObservers()
@@ -35,12 +36,13 @@ class FeedListActivity : AppCompatActivity(), FeedClickListener {
         if (savedInstanceState == null) {
             initViewModel()
         }
+        return inflater.inflate(R.layout.fragment_feed_list, container, false)
     }
 
     private fun createDataBinder() {
-        activityFeedListBinding = DataBindingUtil.setContentView(
-            this,
-            R.layout.activity_feed_list
+        fragmentFeedListBinding = DataBindingUtil.setContentView(
+            requireActivity(),
+            R.layout.fragment_feed_list
         )
     }
 
@@ -77,8 +79,8 @@ class FeedListActivity : AppCompatActivity(), FeedClickListener {
     }
 
     private fun setupDataBinding() {
-        activityFeedListBinding.viewmodel = feedListViewModel
-        activityFeedListBinding.feedadapter = feedAdapter
+        fragmentFeedListBinding.viewmodel = feedListViewModel
+        fragmentFeedListBinding.feedadapter = feedAdapter
     }
 
     private fun initViewModel() {
@@ -86,7 +88,7 @@ class FeedListActivity : AppCompatActivity(), FeedClickListener {
     }
 
     private fun setScreenTitle(title: String) {
-        supportActionBar?.title = title
+        (activity as AppCompatActivity).supportActionBar?.title = title
     }
 
     private fun setFeedList(list: ArrayList<Feed>) {
@@ -94,9 +96,7 @@ class FeedListActivity : AppCompatActivity(), FeedClickListener {
     }
 
     override fun onFeedClicked(feed: Feed) {
-        val feedDetailIntent = Intent(this@FeedListActivity, FeedDetailActivity::class.java).apply {
-            putExtra(BundleConstant.KEY_FEED, feed)
-        }
-        startActivity(feedDetailIntent)
+        val action = FeedListFragmentDirections.actionFeedListFragmentToFeedDetailFragment(feed)
+        view?.findNavController()?.navigate(action)
     }
 }
