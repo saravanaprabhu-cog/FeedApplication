@@ -20,18 +20,14 @@ class FeedDetailFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         feed = FeedDetailFragmentArgs.fromBundle(arguments!!).feed
 
-        createDataBinder()
+        createDataBinder(inflater, container)
         setupDataBinding()
         setupValues()
-
-        return inflater.inflate(R.layout.fragment_feed_detail, container, false)
+        return fragmentFeedDetailBinding.root
     }
 
-    private fun createDataBinder() {
-        fragmentFeedDetailBinding = DataBindingUtil.setContentView(
-            requireActivity(),
-            R.layout.fragment_feed_detail
-        )
+    private fun createDataBinder(inflater: LayoutInflater, container: ViewGroup?) {
+        fragmentFeedDetailBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_feed_detail, container, false)
     }
 
     private fun setupDataBinding() {

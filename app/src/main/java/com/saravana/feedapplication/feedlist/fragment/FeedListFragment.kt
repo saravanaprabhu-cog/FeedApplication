@@ -27,23 +27,23 @@ class FeedListFragment : Fragment(), FeedClickListener {
     private lateinit var fragmentFeedListBinding: FragmentFeedListBinding
     private lateinit var feedListViewModel: FeedListViewModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        createDataBinder()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         createViewModel()
-        setObservers()
-        setupDataBinding()
-
         if (savedInstanceState == null) {
             initViewModel()
         }
-        return inflater.inflate(R.layout.fragment_feed_list, container, false)
     }
 
-    private fun createDataBinder() {
-        fragmentFeedListBinding = DataBindingUtil.setContentView(
-            requireActivity(),
-            R.layout.fragment_feed_list
-        )
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        createDataBinder(inflater, container)
+        setObservers()
+        setupDataBinding()
+        return fragmentFeedListBinding.root
+    }
+
+    private fun createDataBinder(inflater: LayoutInflater, container: ViewGroup?) {
+        fragmentFeedListBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_feed_list, container, false)
     }
 
     private fun createViewModel() {
